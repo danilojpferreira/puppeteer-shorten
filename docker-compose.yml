@@ -1,0 +1,25 @@
+version: '2'
+services:
+  be:
+    build: ./backend
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - blue_coding_mongo
+    links:
+      - blue_coding_mongo
+    environment:
+      - MONGO_URI=mongodb://blue_coding_mongo:27017/blue_coding/
+  blue_coding_mongo:
+    image: mongo
+    restart: always
+    volumes:
+            - ./database:/app
+    command: mongod --noauth
+    ports:
+      - '27017:27017'
+  mongo_data:
+   build: ./database
+   links:
+    - blue_coding_mongo
