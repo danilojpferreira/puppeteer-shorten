@@ -11,6 +11,9 @@ services:
       - blue_coding_mongo
     environment:
       - MONGO_URI=mongodb://blue_coding_mongo:27017/blue_coding/
+      - MONGO_DB=blue_coding
+      - MONGO_COLLECTION=blue_coding
+      - PORT=3000
   blue_coding_mongo:
     image: mongo
     restart: always
